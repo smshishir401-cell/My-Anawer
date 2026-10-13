@@ -31,7 +31,7 @@
             padding: 30px 20px;
             border-radius: 4px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #e06c75; /* খাতার মার্জিনের মতো লাল দাগ */
+            border-left: 4px solid #e06c75;
             position: relative;
             word-wrap: break-word;
             word-break: break-all;
@@ -59,7 +59,7 @@
             text-align: justify;
         }
 
-        /* মাঝের [YES] এর বিশেষ স্টাইল */
+        /* মাঝের [YES 😅] এর স্টাইল */
         .yes-highlight {
             display: block;
             text-align: center;
@@ -74,7 +74,6 @@
             letter-spacing: 4px;
         }
 
-        /* মোবাইল স্ক্রিনের জন্য অ্যাডজাস্টমেন্ট */
         @media (max-width: 480px) {
             .paper {
                 padding: 20px 12px;
@@ -96,12 +95,9 @@
 <body>
 
     <div class="paper">
-        <!-- কাগজের শুরুর শিরোনাম -->
         <div class="title">My Answer Is:</div>
 
-        <!-- ১০০০ (৫০০০ + [YES] + ৫০০০) ডট সমৃদ্ধ কন্টেন্ট -->
         <div class="content" id="dotsContainer">
-            <!-- JavaScript এর মাধ্যমে ডটগুলো স্বয়ংক্রিয়ভাবে জেনারেট হবে -->
         </div>
     </div>
 
@@ -114,9 +110,9 @@
         // শেষের ৫০০০ টি ডট (.)
         const secondHalf = '.'.repeat(5000);
         
-        // কন্টেন্ট যুক্ত করা
+        // [YES 😅] ইমোজি সহ মাঝখানের লেখা
         container.innerHTML = firstHalf + 
-            '<span class="yes-highlight">[YES]</span>' + 
+            '<span class="yes-highlight">[YES 😅]</span>' + 
             secondHalf;
     </script>
 
