@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Answer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* কাগজের স্টাইল */
+        .paper {
+            background: #fdfbf7;
+            background-image: linear-gradient(#e8e4d9 1px, transparent 1px);
+            background-size: 100% 28px;
+            width: 100%;
+            max-width: 650px;
+            padding: 30px 20px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #e06c75; /* খাতার মার্জিনের মতো লাল দাগ */
+            position: relative;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 28px;
+            color: #333;
+        }
+
+        /* কাগজের শিরোনাম */
+        .title {
+            font-size: 26px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        /* ডট (Dot) লেখার এরিয়া */
+        .content {
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-align: justify;
+        }
+
+        /* মাঝের [YES] এর বিশেষ স্টাইল */
+        .yes-highlight {
+            display: block;
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            color: #2e7d32;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(46, 125, 50, 0.1);
+            border: 3px dashed #2e7d32;
+            border-radius: 8px;
+            letter-spacing: 4px;
+        }
+
+        /* মোবাইল স্ক্রিনের জন্য অ্যাডজাস্টমেন্ট */
+        @media (max-width: 480px) {
+            .paper {
+                padding: 20px 12px;
+            }
+            .title {
+                font-size: 22px;
+            }
+            .content {
+                font-size: 14px;
+                letter-spacing: 1.5px;
+            }
+            .yes-highlight {
+                font-size: 28px;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="paper">
+        <!-- কাগজের শুরুর শিরোনাম -->
+        <div class="title">My Answer Is:</div>
+
+        <!-- ১০০০ (৫০০০ + [YES] + ৫০০০) ডট সমৃদ্ধ কন্টেন্ট -->
+        <div class="content" id="dotsContainer">
+            <!-- JavaScript এর মাধ্যমে ডটগুলো স্বয়ংক্রিয়ভাবে জেনারেট হবে -->
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('dotsContainer');
+        
+        // প্রথম ৫০০০ টি ডট (.)
+        const firstHalf = '.'.repeat(5000);
+        
+        // শেষের ৫০০০ টি ডট (.)
+        const secondHalf = '.'.repeat(5000);
+        
+        // কন্টেন্ট যুক্ত করা
+        container.innerHTML = firstHalf + 
+            '<span class="yes-highlight">[YES]</span>' + 
+            secondHalf;
+    </script>
+
+</body>
+</html>
