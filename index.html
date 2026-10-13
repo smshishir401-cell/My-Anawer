@@ -54,9 +54,10 @@
             padding-bottom: 10px;
         }
 
-        /* ডট (Dot) লেখার এরিয়া */
+        /* ডট (Dot) লেখার এরিয়া - সামান্য বোল্ড করার জন্য font-weight যোগ করা হয়েছে */
         .content {
             font-size: 16px;
+            font-weight: bold;
             letter-spacing: 2px;
             text-align: justify;
             white-space: pre-wrap;
@@ -109,34 +110,34 @@
         const container = document.getElementById('dotsContainer');
         const paperBox = document.getElementById('paperBox');
 
-        // পুরো লেখাটিকে সিকোয়েন্স অনুযায়ী সাজানো (প্রথম ৫০০০ ডট -> বিশেষ মেসেজ -> পরবর্তী ৫০০০ ডট)
-        const part1 = '.'.repeat(5000);
+        // প্রথম ১০,০০০ ডট -> বিশেষ মেসেজ -> পরবর্তী ১০,০০০ ডট
+        const part1 = '.'.repeat(10000);
         const targetHtml = '<span class="yes-highlight">[Sahi pakre ho—\'Yes\'😅😶‍🌫️]</span>';
-        const part2 = '.'.repeat(5000);
+        const part2 = '.'.repeat(10000);
 
         let currentIndex = 0;
         let isTypingHtml = false;
         
         function typeWriter() {
             if (currentIndex < part1.length) {
-                // একসাথে অনেকগুলো ডট যোগ করা হচ্ছে যাতে টাইপিং দ্রুত শেষ হয়
-                container.innerHTML += part1.substring(currentIndex, currentIndex + 50);
-                currentIndex += 50;
+                // স্বাভাবিক গতির জন্য একসাথে কম ডট (১০টি করে) যোগ করা হচ্ছে এবং স্পিড ২৫ মিলি সেকেন্ড করা হয়েছে
+                container.innerHTML += part1.substring(currentIndex, currentIndex + 10);
+                currentIndex += 10;
                 paperBox.scrollTop = paperBox.scrollHeight;
-                setTimeout(typeWriter, 5);
+                setTimeout(typeWriter, 25);
             } else if (!isTypingHtml) {
                 // মাঝখানের বিশেষ টেক্সট ইনসার্ট করা
                 container.innerHTML += targetHtml;
                 isTypingHtml = true;
                 paperBox.scrollTop = paperBox.scrollHeight;
                 currentIndex = 0;
-                setTimeout(typeWriter, 20);
+                setTimeout(typeWriter, 50);
             } else if (currentIndex < part2.length) {
-                // শেষের ডটগুলো টাইপ হওয়া
-                container.innerHTML += part2.substring(currentIndex, currentIndex + 50);
-                currentIndex += 50;
+                // শেষের ডটগুলো স্বাভাবিক গতিতে টাইপ হওয়া
+                container.innerHTML += part2.substring(currentIndex, currentIndex + 10);
+                currentIndex += 10;
                 paperBox.scrollTop = paperBox.scrollHeight;
-                setTimeout(typeWriter, 5);
+                setTimeout(typeWriter, 25);
             }
         }
 
