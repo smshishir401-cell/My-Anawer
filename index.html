@@ -1,149 +1,122 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Answer</title>
+    <title>Sorry Page</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #121212;
+            /* সোনালী ব্যাকগ্রাউন্ড (Gradient) */
+            background: linear-gradient(135deg, #bf953f, #fc6, #b38728, #fbf5b7, #aa771c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px 10px;
-            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* কাগজের স্টাইল */
-        .paper {
-            background: #fdfbf7;
-            background-image: linear-gradient(#e8e4d9 1px, transparent 1px);
-            background-size: 100% 28px;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
             width: 100%;
-            max-width: 650px;
-            max-height: 80vh;
-            overflow-y: auto;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.65);
             padding: 30px 20px;
-            border-radius: 4px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #e06c75;
-            position: relative;
-            word-wrap: break-word;
-            word-break: break-all;
-            line-height: 28px;
-            color: #333;
-        }
-
-        /* কাগজের শিরোনাম */
-        .title {
-            font-size: 26px;
-            font-weight: 900;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
-            margin-bottom: 20px;
-            color: #111;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
+            border: 2px solid #ffd700;
         }
 
-        /* ডট (Dot) লেখার এরিয়া - সামান্য বোল্ড করার জন্য font-weight যোগ করা হয়েছে */
-        .content {
-            font-size: 16px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-align: justify;
-            white-space: pre-wrap;
+        h1 {
+            color: #ffd700;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        /* মাঝের বিশেষ টেক্সট এর স্টাইল */
-        .yes-highlight {
-            display: inline-block;
-            text-align: center;
-            font-size: 28px;
-            font-weight: 900;
-            color: #2e7d32;
-            margin: 20px auto;
-            padding: 12px 8px;
-            background: rgba(46, 125, 50, 0.1);
-            border: 3px dashed #2e7d32;
+        .text-box {
+            color: #fff;
+            font-size: clamp(1rem, 3.5vw, 1.4rem);
+            line-height: 1.6;
+            min-height: 150px;
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: left;
+            padding: 10px;
+            border: 1px dashed rgba(255, 215, 0, 0.4);
             border-radius: 8px;
-            letter-spacing: 2px;
-            line-height: 36px;
-            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            word-break: break-all;
         }
 
-        @media (max-width: 480px) {
-            .paper {
-                padding: 20px 12px;
-            }
-            .title {
-                font-size: 22px;
-            }
-            .content {
-                font-size: 14px;
-                letter-spacing: 1.5px;
-            }
-            .yes-highlight {
-                font-size: 22px;
-                margin: 15px 0;
-                line-height: 30px;
-            }
+        /* স্ক্রলবার স্টাইল */
+        .text-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .text-box::-webkit-scrollbar-thumb {
+            background: #ffd700;
+            border-radius: 3px;
+        }
+
+        .counter {
+            margin-top: 15px;
+            color: #ffdf73;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="paper" id="paperBox">
-        <div class="title">My Answer Is:</div>
-        <div class="content" id="dotsContainer"></div>
+    <div class="container">
+        <h1>আন্তরিকভাবে দুঃখিত!</h1>
+        <div class="text-box" id="typingText"></div>
+        <div class="counter" id="counterDisplay">টাইপ হয়েছে: ০ / ৩০০০০ বার</div>
     </div>
 
     <script>
-        const container = document.getElementById('dotsContainer');
-        const paperBox = document.getElementById('paperBox');
-
-        // প্রথম ১০,০০০ ডট -> বিশেষ মেসেজ -> পরবর্তী ১০,০০০ ডট
-        const part1 = '.'.repeat(10000);
-        const targetHtml = '<span class="yes-highlight">[Sahi pakre ho—\'Yes\'😅😶‍🌫️]</span>';
-        const part2 = '.'.repeat(10000);
-
-        let currentIndex = 0;
-        let isTypingHtml = false;
+        const targetWord = "Sorry, ";
+        const maxCount = 30000; // মোট ৩০০০০ বার
+        let currentCount = 0;
         
-        function typeWriter() {
-            if (currentIndex < part1.length) {
-                // স্বাভাবিক গতির জন্য একসাথে কম ডট (১০টি করে) যোগ করা হচ্ছে এবং স্পিড ২৫ মিলি সেকেন্ড করা হয়েছে
-                container.innerHTML += part1.substring(currentIndex, currentIndex + 10);
-                currentIndex += 10;
-                paperBox.scrollTop = paperBox.scrollHeight;
-                setTimeout(typeWriter, 25);
-            } else if (!isTypingHtml) {
-                // মাঝখানের বিশেষ টেক্সট ইনসার্ট করা
-                container.innerHTML += targetHtml;
-                isTypingHtml = true;
-                paperBox.scrollTop = paperBox.scrollHeight;
-                currentIndex = 0;
-                setTimeout(typeWriter, 50);
-            } else if (currentIndex < part2.length) {
-                // শেষের ডটগুলো স্বাভাবিক গতিতে টাইপ হওয়া
-                container.innerHTML += part2.substring(currentIndex, currentIndex + 10);
-                currentIndex += 10;
-                paperBox.scrollTop = paperBox.scrollHeight;
-                setTimeout(typeWriter, 25);
+        const textBox = document.getElementById("typingText");
+        const counterDisplay = document.getElementById("counterDisplay");
+
+        function typeText() {
+            if (currentCount < maxCount) {
+                currentCount++;
+                textBox.innerHTML += targetWord;
+                counterDisplay.innerText = `টাইপ হয়েছে: ${currentCount} / ${maxCount} বার`;
+                
+                // অটো স্ক্রল নিচে রাখার জন্য
+                textBox.scrollTop = textBox.scrollHeight;
+
+                // টাইপিং গতি নিয়ন্ত্রণ করতে এখানে মিলিসেকেন্ড পরিবর্তন করতে পারেন (যেমন: ২০ মিলি সেকেন্ড)
+                let speed = currentCount < 100 ? 100 : 10; 
+                setTimeout(typeText, speed);
+            } else {
+                counterDisplay.innerText = `৩০০০০ বার "Sorry" লেখা সম্পন্ন হয়েছে!`;
             }
         }
 
-        // পেজ লোড হওয়ার একটু পর অ্যানিমেশন শুরু হবে
-        window.onload = () => {
-            setTimeout(typeWriter, 500);
+        // পেজ লোড হওয়ার একটু পর টাইপিং শুরু হবে
+        window.onload = function() {
+            setTimeout(typeText, 500);
         };
     </script>
 
