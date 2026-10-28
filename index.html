@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorry Page</title>
+    <title>Thank You Page</title>
     <style>
         * {
             margin: 0;
@@ -84,13 +84,13 @@
 <body>
 
     <div class="container">
-        <h1>আন্তরিকভাবে দুঃখিত!</h1>
+        <h1>অসংখ্য ধন্যবাদ!</h1>
         <div class="text-box" id="typingText"></div>
         <div class="counter" id="counterDisplay">টাইপ হয়েছে: ০ / ৩০০০০ বার</div>
     </div>
 
     <script>
-        const targetWord = "Sorry, ";
+        const targetWord = "Thanq, ";
         const maxCount = 30000; // মোট ৩০০০০ বার
         let currentCount = 0;
         
@@ -106,11 +106,11 @@
                 // অটো স্ক্রল নিচে রাখার জন্য
                 textBox.scrollTop = textBox.scrollHeight;
 
-                // টাইপিং গতি নিয়ন্ত্রণ করতে এখানে মিলিসেকেন্ড পরিবর্তন করতে পারেন (যেমন: ২০ মিলি সেকেন্ড)
-                let speed = currentCount < 100 ? 100 : 10; 
+                // টাইপিং গতি নিয়ন্ত্রণ করতে এখানে মিলিসেকেন্ড পরিবর্তন করতে পারেন (দ্রুত টাইপ হওয়ার জন্য ৫ মিলি সেকেন্ড দেওয়া হয়েছে)
+                let speed = currentCount < 50 ? 50 : 5; 
                 setTimeout(typeText, speed);
             } else {
-                counterDisplay.innerText = `৩০০০০ বার "Sorry" লেখা সম্পন্ন হয়েছে!`;
+                counterDisplay.innerText = `৩০০০০ বার "Thanq" লেখা সম্পন্ন হয়েছে!`;
             }
         }
 
